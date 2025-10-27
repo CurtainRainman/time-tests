@@ -19,7 +19,10 @@ def compute_overlap_time(range1, range2):
             high = min(end1, end2)
             if low < high:
                 overlap_time.append((low, high))
-    return overlap_time
+    if overlap_time == []:
+        raise ValueError("No overlap between the two time ranges")
+    else:
+        return overlap_time
 
 def test():
     range1 = time_range("2010-01-12 10:00:00", "2010-01-12 11:00:00", 2)

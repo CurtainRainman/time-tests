@@ -1,3 +1,4 @@
+import pytest
 from times import compute_overlap_time, time_range
 
 def test_generic_case():
@@ -31,8 +32,12 @@ def end_when_start():
     assert compute_overlap_time(range1, range2) == expected
 
 test_generic_case()
-test_no_overlap1()
-test_no_overlap2()
+
+with pytest.raises(ValueError, match="No overlap between the two time ranges"):
+    test_no_overlap1()
+    test_no_overlap2()
+    end_when_start()
+
 test_several_interval_ranges()
-end_when_start()
+
 
